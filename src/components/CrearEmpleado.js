@@ -10,7 +10,8 @@ import validator from 'validator'
 
 const MySwal = withReactContent(Swal)
 
-const endpoint = 'http://laravel9api.com/api/empleado'
+const endpoint = 'http://localhost:3000/programming-languages/'
+const file = 'http://localhost:3000/programming-languages/uploadimg'
 const emailRegexp = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
 
 const CrearEmpleado = () => {
@@ -72,7 +73,8 @@ const CrearEmpleado = () => {
             setError('Email no valido')
             return;
         }
-        await axios.post(endpoint, { name: name, last_name: last_name, job: job, phone: phone, address: address, age: age, fileimg: fileimg })
+        
+        await axios.post(endpoint, { name: name, last_name: last_name, job: job, phone: phone, address: address, age: age, fileimg: fileimg})
         MySwal.fire({
             position: 'top-end',
             icon: 'success',
@@ -103,7 +105,7 @@ const CrearEmpleado = () => {
             }
             <form className='mt-3' onSubmit={store} encType="multipart/form-data"  id="imageForm">
                 <div className="row mb-2">
-                    <div className="col">
+                    <div className="col-sm-12 col-md-6">
                         <input value={name}
                         onChange={(e) => setName(e.target.value)}
                         type='text'
@@ -111,7 +113,7 @@ const CrearEmpleado = () => {
                         className='form-control'
                         placeholder="Nombre"/>
                     </div>
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6">
                         <input value={last_name}
                         onChange={(e) => setLastName(e.target.value)}
                         type='text'
@@ -120,14 +122,14 @@ const CrearEmpleado = () => {
                     </div>
                 </div>
                 <div className="row mb-2">
-                    <div className="col">
+                    <div className="col-sm-12 col-md-6">
                         <input value={job}
                         onChange={(e) => setJob(e.target.value)}
                         type='text'
                         className='form-control'
                         placeholder="Profesión"/>
                     </div>
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6">
                         <input  value={phone.value}
                         onChange={(e) => setPhone(e.target.value)}
                         type='text'
@@ -136,7 +138,7 @@ const CrearEmpleado = () => {
                     </div>
                 </div>
                 <div className="row mb-2">
-                    <div className="col">
+                    <div className="col-sm-12 col-md-6">
                         <input value={address.value}
                         onChange={(e) => setAddress(e.target.value)}
                         /*onBlur={handleBlur}*/ 
@@ -147,16 +149,16 @@ const CrearEmpleado = () => {
                         placeholder="Email"
                          />
                     </div>
-                    <div className="col">
+                    <div className="col-sm-12 col-md-6">
                         <div className="row mb-2">
-                            <div className="col">
+                            <div className="col-sm-12 col-md-6">
                                 <input value={age}
                                 onChange={(e) => setAge(e.target.value)}
                                 type='text'
                                 className='form-control'
                                 placeholder="Edad"/>
                             </div>
-                            <div className="col">
+                            <div className="col-sm-12 col-md-6">
                                 <input 
                                 onChange={onFileChange}
                                 type='file'

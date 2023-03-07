@@ -9,7 +9,8 @@ import {GrUpdate} from 'react-icons/gr';
 import validator from 'validator'
 
 const MySwal = withReactContent(Swal)
-const endpoint = 'http://laravel9api.com/api/empleado/'
+const endpoint = 'http://localhost:3000/programming-languages/edit/';
+const endpointUpdate = 'http://localhost:3000/programming-languages/';
 
 const EditarEmpleado = () => {
 
@@ -68,7 +69,7 @@ const EditarEmpleado = () => {
             setError('Email no valido')
             return;
         }
-        await axios.put(`${endpoint}${id}`, {
+        await axios.put(`${endpointUpdate}${id}`, {
             name: name,
             last_name: last_name,
             job: job,
@@ -100,15 +101,16 @@ const EditarEmpleado = () => {
     useEffect( () =>{
         const getEmployeeById = async () => {
             const response = await axios.get(`${endpoint}${id}`)
-            setName(response.data.name)
-            setLastName(response.data.last_name)
-            setJob(response.data.job)
-            setPhone(response.data.phone)
-            setAddress(response.data.address)
-            setAge(response.data.age)
+               response.data.data.map( (empleado) => (
+               setName(empleado.name),
+               setLastName(empleado.last_name),
+               setJob(empleado.job),
+               setPhone(empleado.phone),
+               setAddress(empleado.address),
+               setAge(empleado.age)
+            ))
         }
         getEmployeeById()
-        console.log(name);
     }, [])
   return (
     <div className='container-fluid'>
@@ -118,14 +120,14 @@ const EditarEmpleado = () => {
         }
         <form className='mt-3' onSubmit={update}>
         <div className="row mb-2">
-                    <div className="col">
+                    <div className="col-sm-12 col-md-6">
                         <input value={name}
                         onChange={(e) => setName(e.target.value)}
                         type='text'
                         className='form-control'
                         placeholder="First name"/>
                     </div>
-                    <div className="col">
+                    <div className="col-sm-12 col-md-6">
                         <input value={last_name}
                         onChange={(e) => setLastName(e.target.value)}
                         type='text'
@@ -134,14 +136,14 @@ const EditarEmpleado = () => {
                     </div>
                 </div>
                 <div className="row mb-2">
-                    <div className="col">
+                    <div className="col-sm-12 col-md-6">
                         <input value={job}
                         onChange={(e) => setJob(e.target.value)}
                         type='text'
                         className='form-control'
                         placeholder="job"/>
                     </div>
-                    <div className="col">
+                    <div className="col-sm-12 col-md-6">
                         <input  value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         type='text'
@@ -150,7 +152,7 @@ const EditarEmpleado = () => {
                     </div>
                 </div>
                 <div className="row mb-2">
-                    <div className="col">
+                    <div className="col-sm-12 col-md-6">
                         <input value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         type='text'
@@ -160,14 +162,14 @@ const EditarEmpleado = () => {
                     <div className="col">
                     <div className="col">
                         <div className="row mb-2">
-                            <div className="col">
+                            <div className="col-sm-12 col-md-6">
                                 <input value={age}
                                 onChange={(e) => setAge(e.target.value)}
                                 type='text'
                                 className='form-control'
                                 placeholder="Edad"/>
                             </div>
-                            <div className="col">
+                            <div className="col-sm-12 col-md-6">
                                 <input 
                                 onChange={onFileChange}
                                 type='file'

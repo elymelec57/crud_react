@@ -6,6 +6,7 @@ import CrearEmpleado from './components/CrearEmpleado';
 import EditarEmpleado from './components/EditarEmpleado';
 import laravel from './assets/img/laravel.png';
 import react from './assets/img/react.png';
+import node from './assets/img/nodejs.png';
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
       <header className='row bg-primary h-5 text-center pt-5 pb-5 '>
         <div className='col-sm-3 col-ls-6'><img style={{width: '5rem'}} src={react} className="w-5" /></div>
         <div className='col-sm-6 col-ls-12'><h1 className='text-white'>Crud con React y Laravel 9</h1></div>
-        <div className='col-sm-3 col-ls-6' ><img style={{width: '5rem'}} src={laravel}/></div>
+        <div className='col-sm-3 col-ls-6' ><img style={{width: '5rem'}} src={node}/></div>
       </header>
 
       <content className="container">

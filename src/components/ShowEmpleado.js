@@ -4,13 +4,11 @@ import {Link} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { AiOutlineDelete, AiOutlineEdit, AiOutlineUsergroupAdd } from 'react-icons/ai';
-//import { AiOutlineEdit } from 'react-icons/ai';
-//import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { HiPhotograph } from 'react-icons/hi';
 
 
 const MySwal = withReactContent(Swal)
-const endpoint = 'http://laravel9api.com/api'
+const endpoint = 'http://localhost:3000/programming-languages/'
 
 const ShowEmpleado = () => {
     const [employees, setEmployees] = useState([])
@@ -18,12 +16,12 @@ const ShowEmpleado = () => {
         getAllEmployees()
     }, [])
     const getAllEmployees = async () => {
-        const response = await axios.get(`${endpoint}/empleado`)
-        setEmployees(response.data)
+        const response = await axios.get(`${endpoint}`)
+        setEmployees(response.data.data)
     }
 
     const deleteEmployees = async (id) => {
-        await axios.delete(`${endpoint}/empleado/${id}`)
+        await axios.delete(`${endpoint}${id}`)
         getAllEmployees()
     }
 
@@ -54,7 +52,7 @@ const ShowEmpleado = () => {
         MySwal.fire({
             title: name,
             text: `Profesión: ${job}`,
-            imageUrl: `http://laravel9api.com/storage/${photo}`,
+            imageUrl: `http://localhost:3000/public/img/${photo}`,
             imageWidth: 400,
             imageHeight: 200,
             imageAlt: 'Custom image',
@@ -78,7 +76,7 @@ const ShowEmpleado = () => {
                 </tr>
             </thead>
             <tbody>
-                { employees.map( (empleado) => (
+               { employees.map( (empleado) => (
                     <tr key={empleado.id}>
                         <td>{empleado.name}</td>
                         <td>{empleado.last_name}</td>
@@ -92,7 +90,7 @@ const ShowEmpleado = () => {
                             <button onClick={ ()=>deleteConfirmEmployee(empleado.id)} className='btn btn-danger'><AiOutlineDelete /></button>
                         </td>
                     </tr>
-                ))}                
+                ))}      
             </tbody>
         </table>
     </div>
